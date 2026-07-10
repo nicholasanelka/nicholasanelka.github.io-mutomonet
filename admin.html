@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mutomo Net | Admin Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{background:#f5f7fb;color:#333;}
+
+header{
+background:#0A66C2;
+color:white;
+padding:18px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:10px;
+}
+
+header .logo{font-size:24px;font-weight:700;}
+
+header .who{display:flex;align-items:center;gap:14px;}
+
+header button{
+background:transparent;
+border:1.5px solid white;
+color:white;
+padding:8px 16px;
+border-radius:20px;
+cursor:pointer;
+font-size:14px;
+}
+
+header button:hover{background:white;color:#0A66C2;}
+
+main{padding:30px 6% 80px;max-width:1300px;margin:auto;}
+
+.login-wrap{
+min-height:80vh;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.login-box{
+max-width:420px;
+width:100%;
+background:white;
+padding:35px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.login-box h2{color:#0A66C2;text-align:center;margin-bottom:20px;}
+
+.login-box input{
+width:100%;
+padding:14px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:15px;
+}
+
+.login-box button{
+width:100%;
+padding:14px;
+background:#0A66C2;
+border:none;
+color:white;
+font-size:16px;
+border-radius:8px;
+cursor:pointer;
+margin-top:10px;
+}
+
+.login-box button:disabled{opacity:.6;cursor:not-allowed;}
+
+.form-msg{
+padding:12px 15px;
+border-radius:8px;
+margin-bottom:10px;
+font-size:14px;
+display:none;
+}
+.form-msg.show{display:block;}
+.form-msg.error{background:#fdecea;color:#b71c1c;border:1px solid #f5c6cb;}
+.form-msg.success{background:#e8f8ee;color:#0f6d31;border:1px solid #b7e4c7;}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:18px;
+margin-bottom:35px;
+}
+
+.stat-card{
+background:white;
+padding:22px;
+border-radius:14px;
+box-shadow:0 8px 20px rgba(0,0,0,.06);
+}
+
+.stat-card .label{color:#666;font-size:14px;margin-bottom:8px;}
+.stat-card .value{font-size:30px;font-weight:700;color:#0A66C2;}
+.stat-card .value.green{color:#00C853;}
+.stat-card .value.red{color:#d32f2f;}
+.stat-card .value.orange{color:#f57c00;}
+
+.panel{
+background:white;
+border-radius:14px;
+box-shadow:0 8px 20px rgba(0,0,0,.06);
+padding:25px;
+margin-bottom:30px;
+}
+
+.panel h3{color:#0A66C2;margin-bottom:18px;}
+
+.filters{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-bottom:20px;
+}
+
+.filters input, .filters select{
+padding:10px 12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:14px;
+}
+
+.filters button{
+padding:10px 18px;
+background:#0A66C2;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:14px;
+}
+
+table{width:100%;border-collapse:collapse;font-size:14px;}
+
+th, td{
+padding:12px 10px;
+text-align:left;
+border-bottom:1px solid #eee;
+white-space:nowrap;
+}
+
+th{color:#666;font-weight:600;font-size:13px;text-transform:uppercase;}
+
+.badge{
+padding:4px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:600;
+}
+
+.badge.pending{background:#fff3cd;color:#856404;}
+.badge.completed{background:#d4edda;color:#155724;}
+.badge.failed{background:#f8d7da;color:#721c24;}
+.badge.cancelled{background:#e2e3e5;color:#383d41;}
+
+select.status-select{
+padding:6px 8px;
+border-radius:6px;
+border:1px solid #ccc;
+font-size:13px;
+}
+
+.table-wrap{overflow-x:auto;}
+
+.pagination{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:15px;
+margin-top:20px;
+}
+
+.pagination button{
+padding:8px 16px;
+border:1px solid #0A66C2;
+background:white;
+color:#0A66C2;
+border-radius:8px;
+cursor:pointer;
+}
+
+.pagination button:disabled{opacity:.4;cursor:not-allowed;}
+
+.hidden{display:none;}
+
+.spinner{
+display:inline-block;
+width:14px;
+height:14px;
+border:2px solid rgba(255,255,255,.5);
+border-top-color:white;
+border-radius:50%;
+animation:spin .7s linear infinite;
+vertical-align:middle;
+margin-right:6px;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+.empty-state{text-align:center;padding:30px;color:#888;}
+
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">Mutomo Net — Admin</div>
+<div class="who" id="headerWho" style="display:none;">
+<span id="adminName"></span>
+<button type="button" id="logoutBtn">Logout</button>
+</div>
+</header>
+
+<main>
+
+<!-- LOGIN -->
+<div class="login-wrap" id="loginWrap">
+<div class="login-box">
+<h2>Admin Login</h2>
+<div id="loginMsg" class="form-msg"></div>
+<form id="loginForm">
+<input type="email" id="loginEmail" placeholder="Admin Email" required autocomplete="email">
+<input type="password" id="loginPass" placeholder="Password" required autocomplete="current-password">
+<button type="submit" id="loginBtn">Login</button>
+</form>
+<p style="margin-top:15px;font-size:13px;color:#888;text-align:center;">
+Use the same email/password as your regular Mutomo Net account. Your account must be promoted to admin first (see backend/make-admin.js).
+</p>
+</div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="hidden">
+
+<div class="stats-grid" id="statsGrid"></div>
+
+<div class="panel">
+<h3>Purchases</h3>
+<div class="filters">
+<input type="text" id="filterSearch" placeholder="Search name, email, phone, receipt...">
+<select id="filterStatus">
+<option value="">All statuses</option>
+<option value="pending">Pending</option>
+<option value="completed">Completed</option>
+<option value="failed">Failed</option>
+<option value="cancelled">Cancelled</option>
+</select>
+<input type="date" id="filterFrom">
+<input type="date" id="filterTo">
+<button type="button" id="applyFiltersBtn">Filter</button>
+<button type="button" id="clearFiltersBtn" style="background:#666;">Clear</button>
+</div>
+
+<div class="table-wrap">
+<table id="purchasesTable">
+<thead>
+<tr>
+<th>Date</th>
+<th>Customer</th>
+<th>Package</th>
+<th>Amount</th>
+<th>Phone</th>
+<th>Receipt</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="purchasesBody"></tbody>
+</table>
+<div id="purchasesEmpty" class="empty-state hidden">No purchases match these filters.</div>
+</div>
+
+<div class="pagination">
+<button type="button" id="prevPageBtn">&larr; Prev</button>
+<span id="pageLabel"></span>
+<button type="button" id="nextPageBtn">Next &rarr;</button>
+</div>
+</div>
+
+<div class="panel">
+<h3>Revenue by Package</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Package</th><th>Completed Sales</th><th>Revenue (KSh)</th></tr></thead>
+<tbody id="byPackageBody"></tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</main>
+
+<script>
+
+const API_BASE_URL = window.MUTOMO_API_BASE_URL || "http://localhost:4000";
+
+let currentAdmin = null;
+let currentPage = 1;
+let currentTotal = 0;
+const pageSize = 25;
+
+async function apiFetch(path, options = {}) {
+  const resp = await fetch(API_BASE_URL + path, {
+    credentials: "include",
+    headers: { "Content-Type": "application/json", ...(options.headers || {}) },
+    ...options
+  });
+  let data = {};
+  try { data = await resp.json(); } catch (e) {}
+  if (!resp.ok) throw new Error(data.error || "Something went wrong.");
+  return data;
+}
+
+function showMsg(id, text, type) {
+  const el = document.getElementById(id);
+  el.textContent = text;
+  el.className = "form-msg show " + type;
+}
+
+function money(n) {
+  return "KSh " + Number(n || 0).toLocaleString();
+}
+
+function fmtDate(s) {
+  if (!s) return "";
+  return new Date(s.replace(" ", "T") + "Z").toLocaleString();
+}
+
+async function checkSession() {
+  try {
+    const data = await apiFetch("/api/auth/me");
+    if (!data.user.is_admin) {
+      showMsg('loginMsg', "This account doesn't have admin access.", "error");
+      return;
+    }
+    currentAdmin = data.user;
+    enterDashboard();
+  } catch (e) {
+    // not logged in — show login form (default state)
+  }
+}
+
+function enterDashboard() {
+  document.getElementById('loginWrap').classList.add('hidden');
+  document.getElementById('dashboard').classList.remove('hidden');
+  document.getElementById('headerWho').style.display = 'flex';
+  document.getElementById('adminName').textContent = "Hi, " + currentAdmin.full_name.split(" ")[0];
+  loadStats();
+  loadPurchases();
+}
+
+document.getElementById('loginForm').addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+  const btn = document.getElementById('loginBtn');
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPass').value;
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Logging in...';
+  try {
+    const data = await apiFetch("/api/auth/login", {
+      method: "POST",
+      body: JSON.stringify({ email, password, rememberMe: true })
+    });
+    if (!data.user.isAdmin) {
+      showMsg('loginMsg', "This account doesn't have admin access.", "error");
+      return;
+    }
+    currentAdmin = { ...data.user, full_name: data.user.fullName };
+    enterDashboard();
+  } catch (err) {
+    showMsg('loginMsg', err.message, "error");
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Login";
+  }
+});
+
+document.getElementById('logoutBtn').addEventListener('click', async () => {
+  try { await apiFetch("/api/auth/logout", { method: "POST" }); } catch (e) {}
+  window.location.reload();
+});
+
+async function loadStats() {
+  try {
+    const s = await apiFetch("/api/admin/stats");
+    document.getElementById('statsGrid').innerHTML = `
+      <div class="stat-card"><div class="label">Total Revenue (Completed)</div><div class="value green">${money(s.totalRevenue)}</div></div>
+      <div class="stat-card"><div class="label">Today's Revenue</div><div class="value green">${money(s.todayRevenue)}</div></div>
+      <div class="stat-card"><div class="label">Last 7 Days</div><div class="value">${money(s.last7DaysRevenue)}</div></div>
+      <div class="stat-card"><div class="label">Last 30 Days</div><div class="value">${money(s.last30DaysRevenue)}</div></div>
+      <div class="stat-card"><div class="label">Total Customers</div><div class="value">${s.totalUsers}</div></div>
+      <div class="stat-card"><div class="label">Pending Payments</div><div class="value orange">${s.pendingCount}</div></div>
+      <div class="stat-card"><div class="label">Completed Payments</div><div class="value green">${s.completedCount}</div></div>
+      <div class="stat-card"><div class="label">Failed Payments</div><div class="value red">${s.failedCount}</div></div>
+    `;
+    const tbody = document.getElementById('byPackageBody');
+    tbody.innerHTML = s.byPackage.length
+      ? s.byPackage.map(p => `<tr><td>${p.package_name}</td><td>${p.count}</td><td>${money(p.revenue)}</td></tr>`).join('')
+      : '<tr><td colspan="3" style="text-align:center;color:#888;">No completed sales yet.</td></tr>';
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+function buildQuery() {
+  const params = new URLSearchParams();
+  const search = document.getElementById('filterSearch').value.trim();
+  const status = document.getElementById('filterStatus').value;
+  const from = document.getElementById('filterFrom').value;
+  const to = document.getElementById('filterTo').value;
+  if (search) params.set('search', search);
+  if (status) params.set('status', status);
+  if (from) params.set('from', from);
+  if (to) params.set('to', to);
+  params.set('page', currentPage);
+  params.set('pageSize', pageSize);
+  return params.toString();
+}
+
+async function loadPurchases() {
+  try {
+    const data = await apiFetch("/api/admin/purchases?" + buildQuery());
+    currentTotal = data.total;
+    renderPurchases(data.purchases);
+    renderPagination();
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+function renderPurchases(purchases) {
+  const tbody = document.getElementById('purchasesBody');
+  const empty = document.getElementById('purchasesEmpty');
+  if (!purchases.length) {
+    tbody.innerHTML = '';
+    empty.classList.remove('hidden');
+    return;
+  }
+  empty.classList.add('hidden');
+  tbody.innerHTML = purchases.map(p => `
+    <tr>
+      <td>${fmtDate(p.created_at)}</td>
+      <td>${escapeHtml(p.customer_name)}<br><span style="color:#888;font-size:12px;">${escapeHtml(p.customer_email)}</span></td>
+      <td>${escapeHtml(p.package_name)}</td>
+      <td>${money(p.amount)}</td>
+      <td>${escapeHtml(p.phone)}</td>
+      <td>${p.mpesa_receipt ? escapeHtml(p.mpesa_receipt) : '—'}</td>
+      <td><span class="badge ${p.status}">${p.status}</span></td>
+      <td>
+        <select class="status-select" data-id="${p.id}" onchange="overridePurchase(this)">
+          <option value="">Change status...</option>
+          <option value="pending">Pending</option>
+          <option value="completed">Completed</option>
+          <option value="failed">Failed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str ?? '';
+  return div.innerHTML;
+}
+
+async function overridePurchase(selectEl) {
+  const id = selectEl.dataset.id;
+  const status = selectEl.value;
+  if (!status) return;
+  if (!confirm(`Mark this purchase as "${status}"? This overrides the automatic M-Pesa result.`)) {
+    selectEl.value = '';
+    return;
+  }
+  try {
+    await apiFetch(`/api/admin/purchases/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ status })
+    });
+    loadPurchases();
+    loadStats();
+  } catch (err) {
+    alert(err.message);
+  }
+}
+
+function renderPagination() {
+  const totalPages = Math.max(Math.ceil(currentTotal / pageSize), 1);
+  document.getElementById('pageLabel').textContent = `Page ${currentPage} of ${totalPages}`;
+  document.getElementById('prevPageBtn').disabled = currentPage <= 1;
+  document.getElementById('nextPageBtn').disabled = currentPage >= totalPages;
+}
+
+document.getElementById('applyFiltersBtn').addEventListener('click', () => {
+  currentPage = 1;
+  loadPurchases();
+});
+
+document.getElementById('clearFiltersBtn').addEventListener('click', () => {
+  document.getElementById('filterSearch').value = '';
+  document.getElementById('filterStatus').value = '';
+  document.getElementById('filterFrom').value = '';
+  document.getElementById('filterTo').value = '';
+  currentPage = 1;
+  loadPurchases();
+});
+
+document.getElementById('prevPageBtn').addEventListener('click', () => {
+  if (currentPage > 1) { currentPage--; loadPurchases(); }
+});
+
+document.getElementById('nextPageBtn').addEventListener('click', () => {
+  const totalPages = Math.max(Math.ceil(currentTotal / pageSize), 1);
+  if (currentPage < totalPages) { currentPage++; loadPurchases(); }
+});
+
+checkSession();
+
+</script>
+</body>
+</html>

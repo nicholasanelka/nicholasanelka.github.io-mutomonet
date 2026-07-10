@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mutomo Net | Reliable High-Speed Internet</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f5f7fb;
+color:#333;
+}
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#0A66C2;
+padding:18px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+box-shadow:0 5px 20px rgba(0,0,0,.15);
+transition:background .3s;
+}
+
+.logo{
+font-size:28px;
+font-weight:700;
+color:#fff;
+}
+
+nav{
+display:flex;
+gap:25px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:500;
+transition:.3s;
+}
+
+nav a:hover{
+color:#FFD54F;
+}
+
+.menu-btn{
+display:none;
+font-size:30px;
+cursor:pointer;
+color:white;
+background:none;
+border:none;
+}
+
+.hero{
+padding-top:120px;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80');
+background-size:cover;
+background-position:center;
+}
+
+.hero-content{
+max-width:900px;
+padding:20px;
+}
+
+.hero h1{
+font-size:58px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:22px;
+margin-bottom:35px;
+}
+
+.btn{
+display:inline-block;
+padding:15px 35px;
+border-radius:10px;
+text-decoration:none;
+background:#00C853;
+color:white;
+font-weight:bold;
+transition:.3s;
+margin:10px;
+border:none;
+cursor:pointer;
+font-size:16px;
+}
+
+.btn:hover{
+background:#009624;
+transform:translateY(-3px);
+}
+
+section{
+padding:90px 8%;
+}
+
+.section-title{
+text-align:center;
+font-size:40px;
+color:#0A66C2;
+margin-bottom:50px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card h3{
+margin-bottom:15px;
+color:#0A66C2;
+}
+
+.price{
+font-size:38px;
+font-weight:bold;
+color:#00C853;
+margin:15px 0;
+}
+
+.about{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+}
+
+.about img{
+width:100%;
+border-radius:20px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+text-align:center;
+}
+
+.stat{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.stat h2{
+font-size:42px;
+color:#00C853;
+}
+
+.contact{
+background:#0A66C2;
+color:white;
+text-align:center;
+}
+
+.contact p{
+margin:10px;
+font-size:18px;
+}
+
+.contact a{
+color:white;
+text-decoration:none;
+}
+
+footer{
+background:#111;
+color:white;
+padding:25px;
+text-align:center;
+}
+
+#whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#25D366;
+padding:15px 22px;
+border-radius:50px;
+color:white;
+text-decoration:none;
+font-weight:bold;
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+z-index:999;
+}
+
+.login-box{
+max-width:500px;
+margin:auto;
+background:white;
+padding:35px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+.login-box input{
+width:100%;
+padding:15px;
+margin:12px 0;
+border:1px solid #ccc;
+border-radius:8px;
+}
+
+.login-box button{
+width:100%;
+padding:15px;
+background:#0A66C2;
+border:none;
+color:white;
+font-size:17px;
+border-radius:8px;
+cursor:pointer;
+transition:.3s;
+}
+
+.login-box button:hover:not(:disabled){
+background:#084b90;
+}
+
+.login-box button:disabled{
+opacity:.6;
+cursor:not-allowed;
+}
+
+.auth-tabs{
+display:flex;
+margin-bottom:20px;
+border-radius:8px;
+overflow:hidden;
+border:1px solid #ccc;
+}
+
+.auth-tabs button{
+flex:1;
+padding:12px;
+border:none;
+background:#f0f2f5;
+color:#333;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+
+.auth-tabs button.active{
+background:#0A66C2;
+color:white;
+}
+
+.remember-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin:15px 0;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.remember-row label{
+display:flex;
+align-items:center;
+cursor:pointer;
+font-size:15px;
+}
+
+.remember-row input[type="checkbox"]{
+width:auto;
+margin-right:8px;
+}
+
+.form-msg{
+padding:12px 15px;
+border-radius:8px;
+margin-bottom:15px;
+font-size:15px;
+display:none;
+}
+
+.form-msg.show{
+display:block;
+}
+
+.form-msg.error{
+background:#fdecea;
+color:#b71c1c;
+border:1px solid #f5c6cb;
+}
+
+.form-msg.success{
+background:#e8f8ee;
+color:#0f6d31;
+border:1px solid #b7e4c7;
+}
+
+.form-msg.info{
+background:#e8f1fb;
+color:#0A66C2;
+border:1px solid #bcd6f2;
+}
+
+.user-badge{
+color:white;
+font-weight:500;
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.user-badge button{
+background:transparent;
+border:1.5px solid white;
+color:white;
+padding:6px 14px;
+border-radius:20px;
+cursor:pointer;
+font-size:14px;
+transition:.3s;
+}
+
+.user-badge button:hover{
+background:white;
+color:#0A66C2;
+}
+
+select.pkg-select{
+width:100%;
+padding:15px;
+margin:12px 0;
+border:1px solid #ccc;
+border-radius:8px;
+background:white;
+font-size:16px;
+}
+
+.spinner{
+display:inline-block;
+width:16px;
+height:16px;
+border:2px solid rgba(255,255,255,.5);
+border-top-color:white;
+border-radius:50%;
+animation:spin .7s linear infinite;
+vertical-align:middle;
+margin-right:8px;
+}
+
+@keyframes spin{
+to{transform:rotate(360deg);}
+}
+
+@media(max-width:768px){
+
+header{
+padding:15px 20px;
+}
+
+nav{
+display:none;
+position:absolute;
+top:100%;
+left:0;
+width:100%;
+background:#0A66C2;
+flex-direction:column;
+align-items:center;
+padding:20px 0;
+gap:20px;
+}
+
+nav.active{
+display:flex;
+}
+
+.menu-btn{
+display:block;
+}
+
+.hero h1{
+font-size:40px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.about{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+Mutomo Net
+</div>
+
+<nav id="mainNav">
+<a href="#about">About</a>
+<a href="#services">Services</a>
+<a href="#plans">Plans</a>
+<a href="#payment">M-Pesa</a>
+<a href="#login" id="navLoginLink">Login</a>
+<a href="#contact">Contact</a>
+<span id="navUserBadge" class="user-badge" style="display:none;">
+<span id="navUserName"></span>
+<button type="button" id="navLogoutBtn">Logout</button>
+</span>
+</nav>
+
+<button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Reliable • Affordable • High-Speed Internet</h1>
+
+<p>Connecting Homes, Businesses and Institutions with Fast Internet in Mutomo.</p>
+
+<a href="#plans" class="btn">View Plans &amp; Buy Now</a>
+
+<a href="https://wa.me/254757286231?text=Hello%20Mutomo%20Net.%20I%20have%20a%20question." class="btn">Talk to Support</a>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<h2 class="section-title">About Mutomo Net</h2>
+
+<div class="about">
+
+<div>
+
+<h2 style="color:#0A66C2;margin-bottom:20px;">
+Your Trusted Internet Provider
+</h2>
+
+<p style="line-height:1.9;margin-bottom:20px;">
+Mutomo Net provides reliable, affordable and high-speed wireless internet
+services for homes, businesses, schools and institutions. We are committed
+to delivering stable connectivity with excellent customer support.
+</p>
+
+<p style="line-height:1.9;">
+Whether you need internet for streaming, online learning, remote work,
+gaming or business operations, we have a package that suits your needs.
+</p>
+
+<br>
+
+<a href="#plans" class="btn">Choose a Package</a>
+
+</div>
+
+<div>
+<img src="https://images.unsplash.com/photo-1520869562399-e772f042f422?auto=format&fit=crop&w=900&q=80" alt="Wireless internet equipment">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section id="services">
+
+<h2 class="section-title">Our Services</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>⚡ Hourly Internet</h3>
+<p>Affordable internet for short browsing sessions.</p>
+</div>
+
+<div class="card">
+<h3>📅 Daily Internet</h3>
+<p>Unlimited browsing for 24 hours.</p>
+</div>
+
+<div class="card">
+<h3>📆 Weekly Internet</h3>
+<p>Reliable internet for seven consecutive days.</p>
+</div>
+
+<div class="card">
+<h3>🏠 Home Wi-Fi</h3>
+<p>Fast wireless internet installation for homes.</p>
+</div>
+
+<div class="card">
+<h3>🏢 Business Internet</h3>
+<p>Reliable connectivity for offices and organizations.</p>
+</div>
+
+<div class="card">
+<h3>🛠 24/7 Customer Support</h3>
+<p>Our support team is always ready to assist you.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PRICING -->
+
+<section id="plans">
+
+<h2 class="section-title">Affordable Internet Packages</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Hourly Plan</h3>
+<div class="price">KSh 10</div>
+<p>Unlimited Internet Access</p>
+<br>
+<button type="button" class="btn" onclick="buyNow('hourly')">Buy Now</button>
+</div>
+
+<div class="card">
+<h3>Daily Plan</h3>
+<div class="price">KSh 40</div>
+<p>Unlimited Internet For 24 Hours</p>
+<br>
+<button type="button" class="btn" onclick="buyNow('daily')">Buy Now</button>
+</div>
+
+<div class="card">
+<h3>Weekly Plan</h3>
+<div class="price">KSh 270</div>
+<p>Unlimited Internet For 7 Days</p>
+<br>
+<button type="button" class="btn" onclick="buyNow('weekly')">Buy Now</button>
+</div>
+
+<div class="card">
+<h3>Monthly Plan</h3>
+<div class="price">KSh 1000</div>
+<p>Unlimited Internet For 30 Days</p>
+<br>
+<button type="button" class="btn" onclick="buyNow('monthly')">Buy Now</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STATS -->
+
+<section>
+
+<h2 class="section-title">Why Choose Mutomo Net?</h2>
+
+<div class="stats">
+
+<div class="stat">
+<h2>99%</h2>
+<p>Network Uptime</p>
+</div>
+
+<div class="stat">
+<h2>24/7</h2>
+<p>Customer Support</p>
+</div>
+
+<div class="stat">
+<h2>Fast</h2>
+<p>Reliable Speeds</p>
+</div>
+
+<div class="stat">
+<h2>Affordable</h2>
+<p>Flexible Packages</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- M-PESA PAYMENT -->
+
+<section id="payment">
+
+<h2 class="section-title">M-Pesa Payment</h2>
+
+<div class="login-box">
+
+<h3 style="text-align:center;color:#0A66C2;">Automated M-Pesa Checkout</h3>
+
+<br>
+
+<p><strong>Business Number:</strong> <b>XXXXXXXX</b></p>
+
+<br>
+
+<div id="checkoutMsg" class="form-msg"></div>
+
+<div id="checkoutLoggedOut">
+<p>Please <a href="#login" onclick="showAuthTab('login')" style="color:#0A66C2;font-weight:600;">log in</a> to buy a package. Payment is completed automatically — no manual transaction codes needed.</p>
+</div>
+
+<form id="checkoutForm" style="display:none;" onsubmit="return submitCheckout(event)">
+
+<label for="checkoutPackage" style="font-weight:600;display:block;margin-top:10px;">Select Package</label>
+<select id="checkoutPackage" class="pkg-select" required>
+<option value="">-- Choose a package --</option>
+<option value="hourly">Hourly Plan — KSh 10</option>
+<option value="daily">Daily Plan — KSh 40</option>
+<option value="weekly">Weekly Plan — KSh 270</option>
+<option value="monthly">Monthly Plan — KSh 1000</option>
+</select>
+
+<input type="tel" id="checkoutPhone" placeholder="M-Pesa Phone Number (07XXXXXXXX)" required autocomplete="tel">
+
+<button type="submit" id="checkoutBtn">Pay Now with M-Pesa</button>
+
+<p style="margin-top:15px;font-size:14px;color:#666;text-align:center;">You'll get an M-Pesa PIN prompt on your phone. Your package activates automatically once payment is confirmed.</p>
+
+</form>
+
+</div>
+
+</section>
+
+
+<!-- LOGIN -->
+
+<section id="login">
+
+<h2 class="section-title">Customer Account</h2>
+
+<div class="login-box" id="authBox">
+
+<div class="auth-tabs">
+<button type="button" id="tabLoginBtn" class="active" onclick="showAuthTab('login')">Login</button>
+<button type="button" id="tabRegisterBtn" onclick="showAuthTab('register')">Create Account</button>
+</div>
+
+<div id="authMsg" class="form-msg"></div>
+
+<!-- LOGIN FORM -->
+<form id="loginForm" onsubmit="return submitLogin(event)">
+
+<input type="email" id="loginEmail" placeholder="Email Address" required autocomplete="email">
+<input type="password" id="loginPass" placeholder="Password" required autocomplete="current-password">
+
+<div class="remember-row">
+<label for="rememberMe">
+<input type="checkbox" id="rememberMe" name="rememberMe">
+Remember Me
+</label>
+<a href="https://wa.me/254757286231?text=Hello%20Mutomo%20Net.%20I%20forgot%20my%20password." style="color:#0A66C2;font-size:14px;">Forgot password?</a>
+</div>
+
+<button type="submit" id="loginBtn">Login</button>
+
+</form>
+
+<!-- REGISTER FORM -->
+<form id="registerForm" style="display:none;" onsubmit="return submitRegister(event)">
+
+<input type="text" id="regName" placeholder="Full Name" required autocomplete="name">
+<input type="email" id="regEmail" placeholder="Email Address" required autocomplete="email">
+<input type="tel" id="regPhone" placeholder="Phone Number (07XXXXXXXX)" required autocomplete="tel">
+<input type="password" id="regPass" placeholder="Password (min. 8 characters)" required minlength="8" autocomplete="new-password">
+
+<button type="submit" id="registerBtn">Create Account</button>
+
+</form>
+
+</div>
+
+</section>
+
+
+<!-- TESTIMONIALS -->
+
+<section>
+
+<h2 class="section-title">What Our Customers Say</h2>
+
+<div class="cards">
+
+<div class="card">
+★★★★★
+<br><br>
+"Very reliable internet and excellent customer support."
+<br><br>
+<b>— James M.</b>
+</div>
+
+<div class="card">
+★★★★★
+<br><br>
+"Affordable packages and fast speeds."
+<br><br>
+<b>— Faith N.</b>
+</div>
+
+<div class="card">
+★★★★★
+<br><br>
+"My business has stayed connected every day."
+<br><br>
+<b>— Brian K.</b>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section>
+
+<h2 class="section-title">Frequently Asked Questions</h2>
+
+<div class="login-box">
+
+<h3>How do I buy a package?</h3>
+<p>Log in or create a free account, choose your preferred package, enter your M-Pesa number and click <b>Pay Now</b>. You'll get an automatic prompt on your phone to enter your M-Pesa PIN.</p>
+
+<hr style="margin:25px 0;">
+
+<h3>How do I activate my internet?</h3>
+<p>Activation is automatic. As soon as your M-Pesa payment is confirmed, your package is activated — no need to wait or contact support.</p>
+
+<hr style="margin:25px 0;">
+
+<h3>How do I contact support?</h3>
+<p>Call or WhatsApp <b>0757 286 231</b></p>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+<h2>Contact Us</h2>
+
+<br>
+
+<p>📞 <a href="tel:0757286231">0757 286 231</a></p>
+
+<p>📧 <a href="mailto:nicholasanelka621@gmail.com">nicholasanelka621@gmail.com</a></p>
+
+<p>📍 Mutomo, Kenya</p>
+
+<br>
+
+<a class="btn" href="https://wa.me/254757286231?text=Hello%20Mutomo%20Net.%20I%20need%20internet%20services.">Chat on WhatsApp</a>
+
+</section>
+
+
+<footer>
+
+<h3>Mutomo Net</h3>
+
+<br>
+
+<p>Reliable • Affordable • High-Speed Internet</p>
+
+<br>
+
+<p>© 2026 Mutomo Net. All Rights Reserved.</p>
+
+</footer>
+
+
+<a id="whatsapp" href="https://wa.me/254757286231?text=Hello%20Mutomo%20Net.%20I%20need%20help." target="_blank">💬 Support</a>
+
+
+<script>
+
+/* ===================== CONFIG =====================
+   Point this at your deployed backend (see /backend README).
+   During local testing this is typically http://localhost:4000
+==================================================== */
+const API_BASE_URL = window.MUTOMO_API_BASE_URL || "http://localhost:4000";
+
+const PACKAGE_LABELS = {
+hourly:"Hourly Plan (KSh 10)",
+daily:"Daily Plan (KSh 40)",
+weekly:"Weekly Plan (KSh 270)",
+monthly:"Monthly Plan (KSh 1000)"
+};
+
+let currentUser=null;
+let statusPollTimer=null;
+
+/* ---------- helpers ---------- */
+
+function showMsg(elId,text,type){
+const el=document.getElementById(elId);
+el.textContent=text;
+el.className="form-msg show "+type;
+}
+
+function clearMsg(elId){
+const el=document.getElementById(elId);
+el.textContent="";
+el.className="form-msg";
+}
+
+function setBtnLoading(btn,loadingText){
+btn.dataset.originalText=btn.dataset.originalText||btn.textContent;
+btn.disabled=true;
+btn.innerHTML='<span class="spinner"></span>'+loadingText;
+}
+
+function resetBtn(btn){
+btn.disabled=false;
+btn.textContent=btn.dataset.originalText||btn.textContent;
+}
+
+async function apiFetch(path,options={}){
+const resp=await fetch(API_BASE_URL+path,{
+credentials:"include",
+headers:{"Content-Type":"application/json",...(options.headers||{})},
+...options
+});
+let data={};
+try{ data=await resp.json(); }catch(e){ /* empty body */ }
+if(!resp.ok){
+throw new Error(data.error||"Something went wrong. Please try again.");
+}
+return data;
+}
+
+/* ---------- auth state / UI ---------- */
+
+async function refreshAuthState(){
+try{
+const data=await apiFetch("/api/auth/me");
+currentUser=data.user;
+}catch(e){
+currentUser=null;
+}
+renderAuthUI();
+}
+
+function renderAuthUI(){
+const navLoginLink=document.getElementById('navLoginLink');
+const navUserBadge=document.getElementById('navUserBadge');
+const navUserName=document.getElementById('navUserName');
+const checkoutLoggedOut=document.getElementById('checkoutLoggedOut');
+const checkoutForm=document.getElementById('checkoutForm');
+const authBox=document.getElementById('authBox');
+
+if(currentUser){
+navLoginLink.style.display="none";
+navUserBadge.style.display="flex";
+navUserName.textContent="Hi, "+currentUser.full_name.split(" ")[0];
+checkoutLoggedOut.style.display="none";
+checkoutForm.style.display="block";
+if(authBox) authBox.style.display="none";
+}else{
+navLoginLink.style.display="inline";
+navUserBadge.style.display="none";
+checkoutLoggedOut.style.display="block";
+checkoutForm.style.display="none";
+if(authBox) authBox.style.display="block";
+}
+}
+
+function showAuthTab(tab){
+const loginForm=document.getElementById('loginForm');
+const registerForm=document.getElementById('registerForm');
+const tabLoginBtn=document.getElementById('tabLoginBtn');
+const tabRegisterBtn=document.getElementById('tabRegisterBtn');
+clearMsg('authMsg');
+if(tab==="login"){
+loginForm.style.display="block";
+registerForm.style.display="none";
+tabLoginBtn.classList.add("active");
+tabRegisterBtn.classList.remove("active");
+}else{
+loginForm.style.display="none";
+registerForm.style.display="block";
+tabRegisterBtn.classList.add("active");
+tabLoginBtn.classList.remove("active");
+}
+}
+
+async function submitLogin(evt){
+evt.preventDefault();
+clearMsg('authMsg');
+const btn=document.getElementById('loginBtn');
+const email=document.getElementById('loginEmail').value.trim();
+const password=document.getElementById('loginPass').value;
+const rememberMe=document.getElementById('rememberMe').checked;
+
+setBtnLoading(btn,"Logging in...");
+try{
+const data=await apiFetch("/api/auth/login",{
+method:"POST",
+body:JSON.stringify({email,password,rememberMe})
+});
+currentUser={...data.user, full_name:data.user.fullName};
+showMsg('authMsg',"Welcome back, "+data.user.fullName+"!","success");
+renderAuthUI();
+document.getElementById('loginForm').reset();
+}catch(err){
+showMsg('authMsg',err.message,"error");
+}finally{
+resetBtn(btn);
+}
+return false;
+}
+
+async function submitRegister(evt){
+evt.preventDefault();
+clearMsg('authMsg');
+const btn=document.getElementById('registerBtn');
+const fullName=document.getElementById('regName').value.trim();
+const email=document.getElementById('regEmail').value.trim();
+const phone=document.getElementById('regPhone').value.trim();
+const password=document.getElementById('regPass').value;
+
+if(password.length<8){
+showMsg('authMsg',"Password must be at least 8 characters.","error");
+return false;
+}
+
+setBtnLoading(btn,"Creating account...");
+try{
+const data=await apiFetch("/api/auth/register",{
+method:"POST",
+body:JSON.stringify({fullName,email,phone,password})
+});
+currentUser={...data.user, full_name:data.user.fullName};
+showMsg('authMsg',"Account created! You're now logged in.","success");
+renderAuthUI();
+document.getElementById('registerForm').reset();
+}catch(err){
+showMsg('authMsg',err.message,"error");
+}finally{
+resetBtn(btn);
+}
+return false;
+}
+
+async function logoutUser(){
+try{ await apiFetch("/api/auth/logout",{method:"POST"}); }catch(e){}
+currentUser=null;
+renderAuthUI();
+showAuthTab('login');
+window.location.hash="#login";
+}
+
+/* ---------- checkout / M-Pesa ---------- */
+
+function buyNow(packageId){
+window.location.hash="#payment";
+if(!currentUser){
+window.location.hash="#login";
+showAuthTab('login');
+showMsg('authMsg',"Please log in or create an account to buy the "+(PACKAGE_LABELS[packageId]||"selected")+" package.","info");
+return;
+}
+document.getElementById('checkoutPackage').value=packageId;
+document.getElementById('checkoutPhone').focus();
+}
+
+async function submitCheckout(evt){
+evt.preventDefault();
+clearMsg('checkoutMsg');
+if(statusPollTimer) clearInterval(statusPollTimer);
+
+const btn=document.getElementById('checkoutBtn');
+const packageId=document.getElementById('checkoutPackage').value;
+const phone=document.getElementById('checkoutPhone').value.trim();
+
+if(!packageId){
+showMsg('checkoutMsg',"Please select a package.","error");
+return false;
+}
+
+setBtnLoading(btn,"Sending request...");
+try{
+const data=await apiFetch("/api/payment/checkout",{
+method:"POST",
+body:JSON.stringify({packageId,phone})
+});
+showMsg('checkoutMsg',data.message||"Check your phone to complete payment.","info");
+pollCheckoutStatus(data.checkoutRequestId,btn);
+}catch(err){
+showMsg('checkoutMsg',err.message,"error");
+resetBtn(btn);
+}
+return false;
+}
+
+function pollCheckoutStatus(checkoutRequestId,btn){
+let attempts=0;
+statusPollTimer=setInterval(async ()=>{
+attempts++;
+try{
+const data=await apiFetch("/api/payment/status/"+encodeURIComponent(checkoutRequestId));
+const status=data.purchase.status;
+if(status==="completed"){
+clearInterval(statusPollTimer);
+showMsg('checkoutMsg',"Payment confirmed! Your "+data.purchase.package_name+" is now active. Receipt: "+(data.purchase.mpesa_receipt||"N/A"),"success");
+resetBtn(btn);
+document.getElementById('checkoutForm').reset();
+}else if(status==="failed"||status==="cancelled"){
+clearInterval(statusPollTimer);
+showMsg('checkoutMsg',"Payment was not completed: "+(data.purchase.result_desc||"Please try again."),"error");
+resetBtn(btn);
+}
+}catch(err){
+// keep polling silently on transient errors
+}
+if(attempts>=20){
+clearInterval(statusPollTimer);
+showMsg('checkoutMsg',"Still waiting for confirmation. If you completed the M-Pesa prompt, your package will activate shortly.","info");
+resetBtn(btn);
+}
+},3000);
+}
+
+/* ---------- misc UI (header scroll, mobile menu) ---------- */
+
+window.addEventListener("scroll",function(){
+const header=document.querySelector("header");
+if(window.scrollY>40){
+header.style.background="#084b90";
+}else{
+header.style.background="#0A66C2";
+}
+});
+
+const menuBtn=document.getElementById('menuBtn');
+const mainNav=document.getElementById('mainNav');
+
+menuBtn.addEventListener('click',function(){
+mainNav.classList.toggle('active');
+});
+
+mainNav.querySelectorAll('a').forEach(function(link){
+link.addEventListener('click',function(){
+mainNav.classList.remove('active');
+});
+});
+
+document.getElementById('navLogoutBtn').addEventListener('click',logoutUser);
+
+document.addEventListener('DOMContentLoaded',refreshAuthState);
+refreshAuthState();
+
+</script>
+
+</body>
+</html>
